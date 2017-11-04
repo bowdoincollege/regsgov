@@ -14,25 +14,22 @@ The package can be installed from GitHub as follows:
 ```r
 if (!require('remotes')) {
     install.packages('remotes')
-    library('remotes')
 }
 remotes::install_github('stephenhouser/us-regulations')
 library('regulations')
 ```
-
-NOTE: Use the `remotes` package and not `devtools` on macOS with Xcode9 as `devtools` seems to have a dependency problem with `callr`.
 
 ### Example Code ###
 
 Below are some examples of possible uses of the package.
 
 ```r
-# Get first 1,000 documents with keywork 'katahdin'
+# Get first 1,000 documents with keyword 'katahdin'
 katahdin <- documents(apikey='DEMO_KEY', keywords='katahdin', nresults=1000)
 katahdin$totalNumRecords
 katahdin$content[[1]]
 
-# Get second 1,000 documents with keywork 'katahdin'
+# Get second 1,000 documents with keyword 'katahdin'
 katahdin2 <- documents(apikey='DEMO_KEY', keywords='katahdin', nresults=1000, offset=1000)
 ```
 
