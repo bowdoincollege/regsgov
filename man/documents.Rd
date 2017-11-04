@@ -99,15 +99,16 @@ Only values valid for the selected agency will be returned.}
 a time may be selected. One or more agency values must be part of the
 request. Only values valid for the selected agency will be returned.}
 
-\item{Document}{Subtype: Single or multiple document subtypes may be
-included.  Multiple values should be passed as follows:
-Certificate+of+Service%2BCorrespondence}
+\item{docSubtype}{Document Subtype: Single or multiple document subtypes may 
+be included.}
+
+\item{...}{Additional request parameters. Passed directly to httr request.}
 }
 \description{
 Retrieve regulations.gov documents
 }
 \details{
-A Docket Type is either Rulemaking or Nonrulemaking. A Rulemaking docket includes the type of regulation that establishes a rule.
+A Docket Type is either Rulemaking or Nonrulemaking. A Rulemaking 
+docket includes the type of regulation that establishes a rule.
 While a Non-Rulemaking docket does not include a rule.
 }
-

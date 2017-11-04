@@ -1,4 +1,4 @@
 library(testthat)
-library(regsgov)
+library(regulations)
 
 test_check("regulations")

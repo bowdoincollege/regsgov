@@ -10,6 +10,7 @@
 library('dplyr')
 library('httr')
 library('assertthat')
+library('jsonlite')
 
 regulationsApi <- "https://api.data.gov/regulations/v3/documents.json"
 # For some reason doing it this way causes a need for xml2 package...
@@ -50,7 +51,7 @@ ua
 }
 
 #' Parse (and return) JSON data out of HTTP Response
-#' @importFrom httr content
+#' @importFrom httr content warn_for_status
 .parseResponse <- function(response) {
   if (!response$status_code == 200) {
     stnames <- names(httr::content(response))
@@ -63,7 +64,7 @@ ua
         warning(sprintf("Error: (%s)", response$status_code))
       }
     } else {
-      warn_for_status(response)
+      httr::warn_for_status(response)
     }
   } else {
     stopifnot(response$headers$`content-type` == "application/json")
@@ -166,13 +167,15 @@ ua
 #' @param docketSubSubtype Docket Sub-subtype: Only one docket sub-subtype at
 #' a time may be selected. One or more agency values must be part of the
 #' request. Only values valid for the selected agency will be returned.
-#' @param Document Subtype: Single or multiple document subtypes may be
-#' included.  Multiple values should be passed as follows:
-#' Certificate+of+Service%2BCorrespondence
-#' @details A Docket Type is either Rulemaking or Nonrulemaking. A Rulemaking docket includes the type of regulation that establishes a rule.
+#' @param docSubtype Document Subtype: Single or multiple document subtypes may 
+#' be included.
+#' @param ... Additional request parameters. Passed directly to httr request.
+#' @details A Docket Type is either Rulemaking or Nonrulemaking. A Rulemaking 
+#' docket includes the type of regulation that establishes a rule.
 #' While a Non-Rulemaking docket does not include a rule.
 #' @importFrom assertthat assert_that
 #' @importFrom httr GET timeout
+#' @importFrom stats setNames
 #' @export
 documents <- function(apikey = NULL, countsOnly = NULL, encoded = NULL,
 						keywords = NULL, docType = NULL, docketID = NULL,
@@ -236,7 +239,7 @@ documents <- function(apikey = NULL, countsOnly = NULL, encoded = NULL,
 	}
 
   	if (!is.null(sortBy)) {
-    	assertthat::assert_that(all(sort_by %in% c("docketId", "docId", "title",
+    	assertthat::assert_that(all(sortBy %in% c("docketId", "docId", "title",
                                        				"postedDate", "agency",
                                        				"documentType", 
 													"submitterName",
@@ -271,7 +274,7 @@ documents <- function(apikey = NULL, countsOnly = NULL, encoded = NULL,
   	jsonData <- .parseResponse(httpResponse)
 	allnames = Reduce(unique, lapply(jsonData$documents, names))
   	allrows = lapply(jsonData$documents, `[`, allnames)
-  	allrows = lapply(allrows, setNames, allnames)
+  	allrows = lapply(allrows, stats::setNames, allnames)
   	allrows = lapply(allrows, .nullToNA)
   	documents <- dplyr::bind_rows(allrows)
 
