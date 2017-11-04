@@ -9,7 +9,7 @@ This package provides access to the API for United States regulations at regulat
 
 ## Installing the package ##
 
-The package can be installed from GitHub:
+The package can be installed from GitHub as follows:
 
 ```r
 if (!require('remotes')) {
@@ -20,28 +20,33 @@ remotes::install_github('stephenhouser/us-regulations')
 library('regulations')
 ```
 
+NOTE: Use the `remotes` package and not `devtools` on macOS with Xcode9 as `devtools` seems to have a dependency problem with `callr`.
+
 ### Example Code ###
 
 Below are some examples of possible uses of the package.
 
 ```r
-remotes::install_github('stephenhouser/us-regulations')
-library('regulations')
-katahdin <- usreg_documents(apikey='DEMO_KEY', keywords='katahdin', nresults=1000)
+# Get first 1,000 documents with keywork 'katahdin'
+katahdin <- documents(apikey='DEMO_KEY', keywords='katahdin', nresults=1000)
 katahdin$totalNumRecords
 katahdin$content[[1]]
 
-katahdin2 <- usreg_documents(apikey='DEMO_KEY', keywords='katahdin', nresults=1000, offset=1000)
+# Get second 1,000 documents with keywork 'katahdin'
+katahdin2 <- documents(apikey='DEMO_KEY', keywords='katahdin', nresults=1000, offset=1000)
 ```
 
 ### Developing
 
-Some notes for how to load while developing...
+Some notes for how to load while developing, using `devtools`:
 
 ```r
 if (!require('devtools')) {
     install.packages('devtools')
     library('devtools')
 }
-load_all()
+devtools::load_all()
+devtools::use_testthat()
+devtools::test()
+devtools::check()
 ```
