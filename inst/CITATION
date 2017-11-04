@@ -1,0 +1,15 @@
+citHeader("To cite package 'regulations' in publications use:")
+     
+ year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
+ vers <- paste("R package version", meta$Version)
+ 
+ citEntry(entry="Manual",
+		  title = "regulations: R Client for the U.S. Federal Regulations API",
+		  author = personList(as.person("Stephen A. R. Houser")),
+		  year = year,
+		  note = vers,
+		  textVersion =
+		  paste("Stephen A. R. Houser (",
+				year,
+				"). regulations: R Client for the U.S. Federal Regulations API. ",
+				vers, ".", sep=""))
