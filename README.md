@@ -15,7 +15,7 @@ The package can be installed from GitHub as follows:
 if (!require('remotes')) {
     install.packages('remotes')
 }
-remotes::install_github('stephenhouser/regulations')
+remotes::install_github('stephenhouser/regsgov')
 library(regulations)
 ```
 
@@ -41,21 +41,28 @@ easily be adapted to do so.
 ```r
 # Create a data frame to hold the collected results
 comments <- data.frame(NULL)
-# Start at first document
-offset <- 0
-# Fetch `nresults` at a time
-nresults <- 10
-while (offset < 100) {
-    print(offset)
+
+# Start at first (`start_offset`) and accumulate `end_offset` documents
+start_offset <- 0
+end_offset   <- 100
+# fetch `nresults` documents at a time... 
+nresults     <- 10
+
+# Loop through and accumulate documents into `comments` data.frame
+offset <- start_offset
+while (offset < end_offset) {
     # Fetch the next chunk
     temp <- documents(apikey='DEMO_KEY', docketID = 'DOI-2017-0002', 
                         offset = offset, nresults = nresults)
+    print(paste(offset, "to", offset+nresults, "of", temp$totalNumRecords, "documents"))
     # Add result to collected results
     comments <- rbind(comments, temp$content)
     # Advance to next offset
     offset <- offset + nresults
 }
-comments$commentText
+
+# Display some of the data
+head(comments$commentText)
 ```
 
 ### Developing
