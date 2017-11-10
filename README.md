@@ -15,8 +15,8 @@ The package can be installed from GitHub as follows:
 if (!require('remotes')) {
     install.packages('remotes')
 }
-remotes::install_github('stephenhouser/us-regulations')
-library('regulations')
+remotes::install_github('stephenhouser/regulations')
+library(regulations)
 ```
 
 ### Example Code ###
