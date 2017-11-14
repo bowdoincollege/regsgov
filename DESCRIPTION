@@ -3,7 +3,7 @@ Title: R Client for the U.S. Federal Regulations API
 Version: 0.0.0.9000
 Authors@R: person("Stephen", "houser", email = "houser@bowdoin.edu", role = c("aut", "cre"))
 Description: This package provides access to the API for United States regulations at regulations.gov. The API provides access to all regulations, associated documents, and comments collected. The API returns basic details about each regulation and associated documents and provides the URLs for HTML, PDF, and plan text versions when available.
-Depends: R (>= 3.4.2)
+Depends: R (>= 3.4.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
