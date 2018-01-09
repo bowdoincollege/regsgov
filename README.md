@@ -23,7 +23,6 @@ library(regulations)
 
 Below are some examples of possible uses of the package.
 
-
 Simple use to search regulations.gov for documents with the keyword `katahdin` in them.
 
 ```r
@@ -65,7 +64,11 @@ while (offset < end_offset) {
 head(comments$commentText)
 ```
 
-### Developing
+### API Key ###
+
+To do more than a few small queries you will need to request an `API Key` to replace the `DEMO_KEY` shown above. The process is simple and quick using the [API Key Requetst](http://regulationsgov.github.io/developers/key/) form on the [regulations.gov](regulations.gov) site. Your unique individual key will be emailed to you. Replace `DEMO_KEY` in the examples above with your key.
+
+### Developing ###
 
 Some notes for how to load while developing, using `devtools`:
 
