@@ -3,7 +3,7 @@
 <!-- [![CRAN Version](http://www.r-pkg.org/badges/version/federalregister)](http://cran.r-project.org/package=federalregister) -->
 <!-- ![Downloads](http://cranlogs.r-pkg.org/badges/federalregister) -->
 
-[![Build Status](https://travis-ci.org/bowdoincollege/regsgov.svg?branch=master)](https://travis-ci.org/bowdoincollege/regsgov) (Travis CI integration is broken at the moment)
+[![Build Status](https://travis-ci.org/bowdoincollege/regsgov.svg?branch=master)](https://travis-ci.org/bowdoincollege/regsgov) (Automated tests fail at the moment as the `DEMO_KEY` has been revoked by regulations.gov and I don't want to put my actual key in here)
 
 This package provides access to the API for United States regulations at regulations.gov. The API provides access to all regulations, associated documents, and comments collected. The API returns basic details about each regulation and associated documents and provides the URLs for HTML, PDF, and plan text versions when available.
 
@@ -80,4 +80,11 @@ devtools::load_all()
 devtools::use_testthat()
 devtools::test()
 devtools::check()
+```
+
+To run the same test cases that `TravisCI` runs, use:
+
+```
+R CMD build .
+R CMD check 
 ```
