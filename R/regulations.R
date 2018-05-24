@@ -17,11 +17,11 @@ regulationsApi <- "https://api.data.gov/regulations/v3/documents.json"
 #documentsApiURL = modify_url(regulationsApi, path = "/documents.json")
 documentsApiURL <- regulationsApi
 
-ua <- user_agent("http://github.com/stephenhouser/regulations")
+ua <- user_agent("http://github.com/bowdoincollege/regsgov")
 ua
 #> <request>
 #> Options:
-#> * useragent: http://github.com/stephenhouser/regulations
+#> * useragent: http://github.com/bowdoincollege/regsgov
 
 .compact <- function(l) {
   out <- Filter(Negate(is.null), l)

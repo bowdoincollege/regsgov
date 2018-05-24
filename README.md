@@ -3,7 +3,7 @@
 <!-- [![CRAN Version](http://www.r-pkg.org/badges/version/federalregister)](http://cran.r-project.org/package=federalregister) -->
 <!-- ![Downloads](http://cranlogs.r-pkg.org/badges/federalregister) -->
 
-[![Build Status](https://travis-ci.org/stephenhouser/regsgov.svg?branch=master)](https://travis-ci.org/stephenhouser/regsgov)
+[![Build Status](https://travis-ci.org/bowdoincollege/regsgov.svg?branch=master)](https://travis-ci.org/bowdoincollege/regsgov) (Travis CI integration is broken at the moment)
 
 This package provides access to the API for United States regulations at regulations.gov. The API provides access to all regulations, associated documents, and comments collected. The API returns basic details about each regulation and associated documents and provides the URLs for HTML, PDF, and plan text versions when available.
 
@@ -15,7 +15,7 @@ The package can be installed from GitHub as follows:
 if (!require('remotes')) {
     install.packages('remotes')
 }
-remotes::install_github('stephenhouser/regsgov')
+remotes::install_github('bowdoincollege/regsgov')
 library(regulations)
 ```
 
